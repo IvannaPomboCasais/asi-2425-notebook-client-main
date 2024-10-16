@@ -57,8 +57,8 @@ export default {
         alert("You have to introduce a password.");
         return;
       }
-      if(this.pass.length<4){
-        alert("The password must have 4 characters at least");
+      if(this.pass.length<4 && this.pass<255){
+        alert("The password must have 4 characters at least and cannot take more than 255 characters");
         return;
       }
       if (this.pass !== this.passR) {
