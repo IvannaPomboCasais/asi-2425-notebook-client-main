@@ -44,6 +44,27 @@ export default {
       }
     },
     async register() {
+      if (!this.login){
+        alert("You have to introduce a login.");
+        return;
+      }
+      //probar que funcione asi bien
+      if(this.login.length<4 || this.login.length > 255){
+        alert("The login must have 4 characters at least and cannot take more than 255 characters");
+        return;
+      }
+      if (!this.pass){
+        alert("You have to introduce a password.");
+        return;
+      }
+      if(this.pass.length<4 && this.pass<255){
+        alert("The password must have 4 characters at least and cannot take more than 255 characters");
+        return;
+      }
+      if (this.pass !== this.passR) {
+        alert("Passwords don't match.");
+        return;
+      }
       try {
         await auth.register({
           login: this.login.trim().toLowerCase(),
