@@ -11,10 +11,14 @@
       </button>
     </div>
     <div>
-      <h1 v-if="isAdmin || showArchived">List of all notes: {{ filteredAllNotes.length }}</h1>
-      <h1 v-if="!isAdmin && !showArchived">List of unarchived notes: {{ filteredNotes.length }}</h1>
-      <h1 v-if="userfilter">Notes of {{ userFilterName }}</h1>
-      <h1 v-if="catfilter">Notes of {{ categoryFilterName }}</h1>
+      <h1 v-if="isAdmin && !userfilter && !catfilter">List of all notes: {{ filteredAllNotes.length }}</h1>
+      <h1 v-if="!isAdmin && showArchived && !catfilter">List of all notes: {{ filteredAllNotes.length }}</h1>
+      <h1 v-if="!isAdmin && !showArchived && !catfilter">List of unarchived notes: {{ filteredNotes.length }}</h1>
+      <h1 v-if="userfilter && isAdmin">Notes of {{ userFilterName }} : {{ filteredAllNotes.length }}</h1>
+      <h1 v-if="catfilter && showArchived && !isAdmin">All Notes of {{ categoryFilterName }} : {{ filteredAllNotes.length }}</h1>
+      <h1 v-if="catfilter && isAdmin">Notes of {{ categoryFilterName }} : {{ filteredAllNotes.length }}</h1>
+      <h1 v-if="catfilter && !showArchived && !isAdmin">Unarchived Notes of {{ categoryFilterName }} : {{ filteredNotes.length }}</h1>
+
     </div>
 
     <div v-if="isAdmin || showArchived" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4">
